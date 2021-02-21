@@ -7,6 +7,11 @@
 "sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 700 --slave /usr/bin/g++ g++ /usr/bin/g++-7
 "sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 800 --slave /usr/bin/g++ g++ /usr/bin/g++-8
 "
+"Installing nodejs for coc
+"   curl -fsSL https://deb.nodesource.com/setup_15.x | sudo -E bash -
+"   sudo apt-get install -y nodejs
+"   :CocInstall coc-tsserver coc-eslint coc-json coc-prettier coc-css coc-html coc-python coc-pyls coc-wxml coc-solargraph coc-stylelint coc-emmet coc-sql
+"
 "
 " verify and install python {{{
 function! s:show_warning_message(hlgroup, msg)
@@ -112,9 +117,9 @@ call plug#begin('~/.config/nvim/plugged')
 " call plug#begin('~\AppData\Local\nvim\plugged')
 
 "Auto complete
-Plug 'valloric/youcompleteme', { 'do': './install.py --all --racer-completer --omnisharp-completer --tern-completer --ts-completer' }
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'valloric/youcompleteme', { 'do': './install.py --all --racer-completer --omnisharp-completer --tern-completer --ts-completer' }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " for deoplete run auto complete in python need to: pip install pynvim jedi
 Plug 'zchee/deoplete-jedi'
 
@@ -145,6 +150,8 @@ Plug 'morhetz/gruvbox'
 Plug 'altercation/vim-colors-solarized'
 
 call plug#end()
+
+call dein#add('neoclide/coc.nvim', { 'merged': 0 })
 
 colorscheme gruvbox
 
@@ -219,3 +226,4 @@ let g:jedi#completions_enabled = 0
 let g:jedi#use_splits_not_buffers = "right"
 
 " }}}
+
