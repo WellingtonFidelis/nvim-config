@@ -149,11 +149,13 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'morhetz/gruvbox'
 Plug 'altercation/vim-colors-solarized'
 
+Plug 'dracula/vim', { 'as': 'dracula' }
+
 call plug#end()
 
 call dein#add('neoclide/coc.nvim', { 'merged': 0 })
 
-colorscheme gruvbox
+colorscheme dracula
 
 set background=dark
 
@@ -171,25 +173,46 @@ let g:ale_completion_autoimport = 1
 
 " Airline {{{
 " enable tabline
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+if !exists('g:airline_powerline_fonts')
+  let g:airline#extensions#tabline#left_sep = ' '
+  let g:airline#extensions#tabline#left_alt_sep = '|'
+  let g:airline_left_sep          = '▶'
+  let g:airline_left_alt_sep      = '»'
+  let g:airline_right_sep         = '◀'
+  let g:airline_right_alt_sep     = '«'
+  let g:airline#extensions#branch#prefix     = '⤴' "➔, ➥, ⎇
+  let g:airline#extensions#readonly#symbol   = '⊘'
+  let g:airline#extensions#linecolumn#prefix = '¶'
+  let g:airline#extensions#paste#symbol      = 'ρ'
+  let g:airline_symbols.linenr    = '␊'
+  let g:airline_symbols.branch    = '⎇'
+  let g:airline_symbols.paste     = 'ρ'
+  let g:airline_symbols.paste     = 'Þ'
+  let g:airline_symbols.paste     = '∥'
+  let g:airline_symbols.whitespace = 'Ξ'
+else
+  let g:airline#extensions#tabline#left_sep = ''
+  let g:airline#extensions#tabline#left_alt_sep = ''
+
+  " powerline symbols
+  let g:airline_left_sep = ''
+  let g:airline_left_alt_sep = ''
+  let g:airline_right_sep = ''
+  let g:airline_right_alt_sep = ''
+  let g:airline_symbols.branch = ''
+  let g:airline_symbols.readonly = ''
+  let g:airline_symbols.linenr = ''
+endif
+
+set t_Co=16
+syntax enable                   "Use syntax highlighting
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
-let g:airline#extensions#tabline#right_sep = ''
-let g:airline#extensions#tabline#right_alt_sep = ''
 
-" enable powerline fonts
-let g:airline_powerline_fonts = 1
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-
-" Switch to your current theme
-let g:airline_theme = 'onedark'
-
-" Always show tabs
-set showtabline=2
-
-" We don't need to see things like -- INSERT -- anymore
-set noshowmode
+"
 " }}}
 
 " Spaces & Tabs {{{
@@ -219,11 +242,17 @@ let g:neoformat_basic_format_trim = 1
 " }}}
 
 " jedi {{{
-" disable autocompletion, because we use deoplete for completion
-let g:jedi#completions_enabled = 0
+" 
+let g:jedi#popup_on_dot = 0
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = "<leader>d"
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#rename_command = "<leader>r"
+let g:jedi#show_call_signatures = "0"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#smart_auto_mappings = 0
 
-" open the go-to function in split, not another buffer
-let g:jedi#use_splits_not_buffers = "right"
-
+"
 " }}}
 
