@@ -148,10 +148,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'morhetz/gruvbox'
 Plug 'altercation/vim-colors-solarized'
+Plug 'ap/vim-css-color'
 
 call plug#end()
-
-call dein#add('neoclide/coc.nvim', { 'merged': 0 })
 
 colorscheme gruvbox
 
@@ -193,9 +192,9 @@ set noshowmode
 " }}}
 
 " Spaces & Tabs {{{
-set tabstop=4       " number of visual spaces per TAB
-set softtabstop=4   " number of spaces in tab when editing
-set shiftwidth=4    " number of spaces to use for autoindent
+set tabstop=2       " number of visual spaces per TAB
+set softtabstop=2   " number of spaces in tab when editing
+set shiftwidth=2    " number of spaces to use for autoindent
 set expandtab       " tabs are space
 set autoindent
 set copyindent      " copy indent from the previous line
